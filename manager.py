@@ -61,7 +61,8 @@ while True:
                     clr()
                     print(lg + '[*] Logging in from new accounts...\n')
                     for added in newly_added:
-                        c = TelegramClient(f'sessions/{added[2]}', added[0], added[1])
+                        proxy = (socks.SOCKS5 ,"127.0.0.1",10808 )
+                        c = TelegramClient(f'sessions/{added[2]}', added[0], added[1], proxy=proxy)
                         try:
                             c.start()
                             print(f'n\n{lg}[+] Logged in - {added[2]}')
@@ -91,7 +92,8 @@ while True:
                 api_id = int(account[0])
                 api_hash = str(account[1])
                 phone = str(account[2])
-                client = TelegramClient(f'sessions\\{phone}', api_id, api_hash)
+                proxy = (socks.SOCKS5 ,"127.0.0.1",10808 )
+                client = TelegramClient(f'sessions\\{phone}', api_id, api_hash, proxy=proxy)
                 client.connect()
                 if not client.is_user_authorized():
                     try:
